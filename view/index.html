@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Grid CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.css" />
+
+    <!-- Modal CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style/index.css" />
+</head>
+
+<body>
+    <!-- Grid Header -->
+    <div class="grid-header">
+        <button class="grid-header-button"><i class="fas fa-apple-alt"></i></button>
+        <button class="grid-header-button" id="loadButton">Load</button>
+        <button class="grid-header-button" id="saveButton">Save</button>
+        <button class="grid-header-button" id="addDataButton">Add</button>
+    </div>
+
+    <!-- Grid Stack -->
+    <div class="grid-stack"></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Setting</h4>
+                    <button type="button" class="close" id="closeButton">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="modalForm">
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-2 col-form-label">TITLE</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="title">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="width" class="col-sm-2 col-form-label">WIDTH</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="width" type="number">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="height" class="col-sm-2 col-form-label">HEIGHT</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="height" type="number">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="type" class="col-sm-2 col-form-label">TYPE</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="type">
+                                    <option disabled selected value="default">Select the type...</option>
+                                    <option value="text">TEXT</option>
+                                    <option value="html">HTML</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="data-form" id="textForm">
+                            <div class="form-group row">
+                                <label for="type" class="col-sm-2 col-form-label">SIZE</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="number" id="text-size">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="type" class="col-sm-2 col-form-label">COLOR</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="color" id="text-color">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="type" class="col-sm-2 col-form-label">CONTENT</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" id="text-content">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="saveDataButton" class="btn">SAVE</button>
+                    <button type="button" id="deleteDataButton" class="btn">DELETE</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JQuery JS -->
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+    <!-- Grid JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.jQueryUI.min.js'></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../javascript/index.js"></script>
+</body>
+
+</html>

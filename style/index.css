@@ -1,0 +1,194 @@
+@import url("https://use.fontawesome.com/releases/v5.2.0/css/all.css");
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding');
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: black;
+}
+
+input:focus, button:focus {
+    outline: 0;
+}
+
+/*
+ *
+ * Grid Header
+ * 
+ */
+.grid-header {
+    position: fixed;
+    top: 0;
+
+    width: 100%;
+
+    padding: 5px;
+
+    background-color: white;
+}
+
+.grid-header .grid-header-button {
+    vertical-align: bottom;
+
+    margin: 0px 20px 0px 20px;
+
+    color: black;
+    font-size: 1rem;
+
+    background: none;
+    
+    border: none;
+
+    cursor: pointer;
+
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.grid-stack {
+    top: 60px;
+
+    margin: 0px 20px 0px 20px;
+}
+
+/*
+ *
+ * Grid Stack
+ * 
+ */
+ .grid-stack .grid-stack-item .grid-stack-item-content {
+    color: white;
+    font-family: 'Nanum Gothic Coding', monospace;
+
+    background: #2e2e2e;
+}
+
+.grid-stack .grid-stack-item .grid-stack-item-header {
+    padding: 7.5px;
+
+    color: white;
+    font-size: 15px;
+
+    background: #202020;
+}
+
+.grid-stack .grid-stack-item .grid-stack-item-header::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.grid-stack .grid-stack-item .grid-stack-item-header i {
+    float: right;
+}
+
+.grid-stack .grid-stack-item .grid-stack-item-header i:hover {
+    color: darkgray;
+}
+
+.grid-stack .grid-stack-item .grid-stack-item-body {
+    background: #2e2e2e;
+}
+
+
+/*
+ *
+ * Modal
+ * 
+ */
+.modal {
+    margin: 0 auto;
+
+    background: none;
+
+    box-shadow: none;
+
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.modal .modal-content {
+    color: darkgray;
+    background: black;
+    border: 1px solid darkgray;
+}
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.modal .modal-header {
+    padding: 10px 16px 10px 16px;
+
+    border-bottom: 1px solid darkgray;
+}
+
+.modal .modal-title {
+    font-size: 15px;
+}
+
+.modal .close {
+    line-height: 20px;
+
+    color: darkgray;
+    text-shadow: none;
+
+    opacity: 1;
+}
+
+.modal .close:not(:disabled):not(.disabled):focus, .modal .close:not(:disabled):not(.disabled):hover {
+    color: darkgray;
+}
+
+.modal .col-form-label {
+    line-height: 16px;
+    font-size: 13px;
+}
+
+.modal .form-control {
+    height: 32px;
+
+    color: darkgray;
+    font-size: 13px;
+
+    line-height: 13px;
+
+    border: 1px solid darkgray;
+
+    background-color: transparent;
+
+    box-shadow: none;
+}
+
+.modal .form-control:focus {
+    outline: 0;
+}
+
+
+.modal .modal-footer {
+    padding: 10px 16px 10px 16px;
+
+    border-top: 1px solid darkgray;
+}
+
+.modal .btn {
+    color: darkgray;
+    font-size: 15px;
+
+
+    background: transparent;
+
+    outline: 0;
+    box-shadow: none;
+}
+
+.modal .btn:hover {
+    border: 1px solid darkgray;
+}
+
+.modal .data-form {
+    display: none;
+}
+
