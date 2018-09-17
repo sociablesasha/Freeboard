@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
 
-    background: black;
+    background: white;
 }
 
 input:focus, button:focus {
@@ -22,12 +22,17 @@ input:focus, button:focus {
 .grid-header {
     position: fixed;
     top: 0;
+    z-index: 9;
 
     width: 100%;
+    height: 40px;
 
     padding: 5px;
 
-    background-color: white;
+    font-size: 30px;
+    line-height: 30px;
+
+    background-color: black;
 }
 
 .grid-header .grid-header-button {
@@ -35,11 +40,12 @@ input:focus, button:focus {
 
     margin: 0px 20px 0px 20px;
 
-    color: black;
+    color: white;
     font-size: 1rem;
 
     background: none;
     
+    padding: 0;
     border: none;
 
     cursor: pointer;
@@ -48,9 +54,9 @@ input:focus, button:focus {
 }
 
 .grid-stack {
-    top: 60px;
+    top: 40px;
 
-    margin: 0px 20px 0px 20px;
+    margin: 20px;
 }
 
 /*
@@ -59,10 +65,9 @@ input:focus, button:focus {
  * 
  */
  .grid-stack .grid-stack-item .grid-stack-item-content {
-    color: white;
     font-family: 'Nanum Gothic Coding', monospace;
 
-    background: #2e2e2e;
+    box-shadow: 6px 6px 20px 0px darkgray;
 }
 
 .grid-stack .grid-stack-item .grid-stack-item-header {
@@ -71,7 +76,7 @@ input:focus, button:focus {
     color: white;
     font-size: 15px;
 
-    background: #202020;
+    background: black;
 }
 
 .grid-stack .grid-stack-item .grid-stack-item-header::after {
@@ -107,7 +112,7 @@ input:focus, button:focus {
 
     padding: 7.5px;
 
-    background: #2e2e2e;
+    background: white;
 }
 
 
@@ -127,9 +132,8 @@ input:focus, button:focus {
 }
 
 .modal .modal-content {
-    color: darkgray;
+    color: white;
     background: black;
-    border: 1px solid darkgray;
 }
 
 .modal-open .modal {
@@ -140,7 +144,7 @@ input:focus, button:focus {
 .modal .modal-header {
     padding: 10px 16px 10px 16px;
 
-    border-bottom: 1px solid darkgray;
+    border-bottom: 1px solid white;
 }
 
 .modal .modal-title {
@@ -150,14 +154,14 @@ input:focus, button:focus {
 .modal .close {
     line-height: 20px;
 
-    color: darkgray;
+    color: white;
     text-shadow: none;
 
     opacity: 1;
 }
 
 .modal .close:not(:disabled):not(.disabled):focus, .modal .close:not(:disabled):not(.disabled):hover {
-    color: darkgray;
+    color: white;
 }
 
 .modal .col-form-label {
@@ -168,12 +172,12 @@ input:focus, button:focus {
 .modal .form-control {
     height: 32px;
 
-    color: darkgray;
+    color: white;
     font-size: 13px;
 
     line-height: 13px;
 
-    border: 1px solid darkgray;
+    border: 1px solid white;
 
     background-color: transparent;
 
@@ -188,11 +192,11 @@ input:focus, button:focus {
 .modal .modal-footer {
     padding: 10px 16px 10px 16px;
 
-    border-top: 1px solid darkgray;
+    border-top: 1px solid white;
 }
 
 .modal .btn {
-    color: darkgray;
+    color: white;
     font-size: 15px;
 
 
@@ -203,7 +207,7 @@ input:focus, button:focus {
 }
 
 .modal .btn:hover {
-    border: 1px solid darkgray;
+    border: 1px solid white;
 }
 
 .modal .data-form {

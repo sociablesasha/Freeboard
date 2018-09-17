@@ -81,7 +81,7 @@ $(document).ready(function () {
         var grid = $('.grid-stack').data('gridstack');
         grid.addWidget($('#' + id), 0, 0, 4, 2, true);
         grid.maxWidth($('#' + id), 6);
-        grid.maxHeight($('#' + id), 4);
+        grid.maxHeight($('#' + id), 6);
 
         index++;
     }
@@ -256,20 +256,19 @@ $(document).ready(function () {
         var id = elem.attr("id");
         var data = elem.attr("data-chart-data");
 
-        console.log(test = data);
+        var object = JSON.parse(data);
 
         c3.generate({
-            bindto: id + 'div.grid-stack-item-body',
-            data: data,
+            bindto: "#" + id + " " + 'div.grid-stack-item-body',
+            data: { json: object.data, keys: { value: object.keys } },
             padding: {
                 top: 10,
-                bottom: 0,
+                bottom: 10,
                 left: 30,
-                right: 10
+                right: 30
             }
         });
-
-        console.log(data);
     }
 
 });
+
