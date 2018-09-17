@@ -16,6 +16,27 @@
 * GridStack
 
 
+### How To Use
+1. Press the "Add" button.
+2. Click on the gear at the top of the created item.
+3. Set the title, width, and heigth.
+4. Choose the data type that best suits your needs.
+5. Enter each item and press the "Save" button.
+```json
+Chart Data
+
+{
+   "data": [
+      {"year": "2015", "react": "0.5", "angular": "0.18", "vue": "0.16"},
+      {"year": "2016", "react": "0.8", "angular": "0.2", "vue": "0.17"},
+      {"year": "2017", "react": "0.6", "angular": "0.3", "vue": "0.2"},
+      {"year": "2018", "react": "1.2", "angular": "0.35", "vue": "0.38"}
+   ],
+   "keys": ["react", "vue", "angular"]
+}
+```
+
+
 ## Photo
 ### Start
 <img width="1680" alt="2018-09-17 4 06 01" src="https://user-images.githubusercontent.com/31611484/45609604-a1a98380-ba93-11e8-869e-0646a43a188a.png">
