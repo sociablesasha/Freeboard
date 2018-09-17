@@ -80,8 +80,20 @@ input:focus, button:focus {
     display: block;
 }
 
+.grid-stack .grid-stack-item .grid-stack-item-header div {
+    display: inline-block;
+
+    width: 90%;
+
+    text-align: left;
+}
+
 .grid-stack .grid-stack-item .grid-stack-item-header i {
-    float: right;
+    display: inline-block;
+
+    width: 10%;
+
+    text-align: right;
 }
 
 .grid-stack .grid-stack-item .grid-stack-item-header i:hover {
@@ -89,6 +101,12 @@ input:focus, button:focus {
 }
 
 .grid-stack .grid-stack-item .grid-stack-item-body {
+    height: calc(100% - 22px - 15px);
+    
+    max-height: none !important;
+
+    padding: 7.5px;
+
     background: #2e2e2e;
 }
 

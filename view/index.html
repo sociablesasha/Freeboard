@@ -3,15 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>Freeboard</title>
 
     <!-- Grid CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.css" />
 
     <!-- Modal CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- C3 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.7/c3.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../style/index.css" />
@@ -45,19 +49,19 @@
                         <div class="form-group row">
                             <label for="title" class="col-sm-2 col-form-label">TITLE</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="title">
+                                <input class="form-control" id="title" placeholder="Enter the Title.">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="width" class="col-sm-2 col-form-label">WIDTH</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="width" type="number">
+                                <input class="form-control" id="width" type="number" placeholder="Enter the Width.">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="height" class="col-sm-2 col-form-label">HEIGHT</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="height" type="number">
+                                <input class="form-control" id="height" type="number" placeholder="Enter the Height.">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -66,15 +70,17 @@
                                 <select class="form-control" id="type">
                                     <option disabled selected value="default">Select the type...</option>
                                     <option value="text">TEXT</option>
-                                    <option value="html">HTML</option>
+                                    <option value="chart">CHART</option>
+                                    <option value="table">TABLE</option>
                                 </select>
                             </div>
                         </div>
+
                         <div class="data-form" id="textForm">
                             <div class="form-group row">
                                 <label for="type" class="col-sm-2 col-form-label">SIZE</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="number" id="text-size">
+                                    <input class="form-control" type="number" id="text-size" placeholder="Enter the Size.">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -86,10 +92,21 @@
                             <div class="form-group row">
                                 <label for="type" class="col-sm-2 col-form-label">CONTENT</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="text-content">
+                                    <input class="form-control" type="text" id="text-content" placeholder="Enter the Content.">
                                 </div>
                             </div>
                         </div>
+
+                        <div class="data-form" id="chartForm">
+                            <div class="form-group row">
+                                <label for="type" class="col-sm-2 col-form-label">DATA</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" type="textarea" id="chart-data" style="height: 360px"
+                                        placeholder="Enter the C3 JSON."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
 
@@ -104,17 +121,21 @@
     </div>
 
     <!-- JQuery JS -->
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
     <!-- Grid JS -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
-    <script src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.js'></script>
-    <script src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.jQueryUI.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.jQueryUI.min.js'></script>
 
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!-- C3 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.7/c3.js"></script>
 
     <!-- Custom JS -->
     <script src="../javascript/index.js"></script>

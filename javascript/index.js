@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+    /*
+     * Grid Stack
+     */
     var options = {
         cellHeight: 80,
         verticalMargin: 20,
@@ -10,6 +12,11 @@ $(document).ready(function () {
 
     $('.grid-stack').gridstack(options);
 
+
+
+    /*
+     * Event Listen
+     */
     $("saveButton").on("click", function () { console.log("준비중입니다.") });
     $("loadButton").on("click", function () { console.log("준비중입니다.") });
 
@@ -19,10 +26,17 @@ $(document).ready(function () {
     $("#saveDataButton").on("click", saveData);
     $("#deleteDataButton").on("click", deleteData);
 
+    $("#type").on("change", function () { dataForm(this.value); });
 
-    let id = 0;
+
+    /*
+     * Create Object
+     */
+    let index = 0;
     function createData() {
-        // PARENT DIV
+        var id = "item" + index;
+
+        // PARENT DIV    
         var grid_item = document.createElement("div");
         $(grid_item)
             .attr("class", "grid-stack-items")
@@ -39,18 +53,24 @@ $(document).ready(function () {
         $(grid_header)
             .attr("class", "grid-stack-item-header")
 
+        // TITLE
+        var grid_header_title = document.createElement("div");
+        $(grid_header_title)
+            .attr("class", "grid-stack-item-title")
+
         // HEADER ICON
         var grid_header_icon = document.createElement("i");
         $(grid_header_icon)
             .attr("class", "fas fa-cog grid-stack-item-set")
-            .on("click", openModal);
+            .on("click", openModal)
 
         // BODY DIV
         var grid_body = document.createElement("div");
         $(grid_body)
-            .attr("class", "grid-stack-items")
+            .attr("class", "grid-stack-item-body")
 
         // APPEND
+        $(grid_header).append($(grid_header_title))
         $(grid_header).append($(grid_header_icon))
         $(grid_content).append($(grid_header))
         $(grid_content).append($(grid_body))
@@ -63,14 +83,11 @@ $(document).ready(function () {
         grid.maxWidth($('#' + id), 6);
         grid.maxHeight($('#' + id), 4);
 
-        id++;
+        index++;
     }
 
 
-    $("#type").on("change", function () {
-        test = this.parentElement.parentElement.parentElement.id;
-        dataForm(this.value);
-    });
+
 
 
 
@@ -99,8 +116,6 @@ $(document).ready(function () {
 
         // DATA FORM
         dataForm($(parentElem).attr("data-gs-type"), parentElem.id);
-
-        console.log($(parentElem).attr("data-gs-type"));
 
         $('#modal').attr("data-gs-id", parentElem.id);
 
@@ -140,7 +155,6 @@ $(document).ready(function () {
         }
         var parentElem = $("#" + id);
 
-
         // DATA FORM
         switch (data) {
             case "text":
@@ -148,9 +162,17 @@ $(document).ready(function () {
                 $("#text-color").val(parentElem.attr("data-text-color"));
                 $("#text-content").val(parentElem.attr("data-text-content"));
                 break;
+            case "chart":
+                $("#chart-data").val(parentElem.attr("data-chart-data"));
+                break;
             default:
                 break;
         }
+
+        var dataForm = $(".data-form");
+        dataForm.each(function () {
+            $(this).attr("style", "display: none");
+        });
 
         var dataElem = $("#" + data + "Form");
         dataElem.attr("style", "display: block");
@@ -171,10 +193,12 @@ $(document).ready(function () {
         data.width = $("#width").val();
         data.height = $("#height").val();
 
-        $(elem).attr("data-gs-title", data.title);
-        $(elem).attr("data-gs-width", data.width);
-        $(elem).attr("data-gs-height", data.height);
-        $(elem).attr("data-gs-type", data.type);
+        elem.attr("data-gs-title", data.title);
+        elem.attr("data-gs-width", data.width);
+        elem.attr("data-gs-height", data.height);
+        elem.attr("data-gs-type", data.type);
+
+        elem.find("div.grid-stack-item-title").text(data.title);
 
         // DATA FORM
         switch (data.type) {
@@ -183,14 +207,29 @@ $(document).ready(function () {
                 data.text_color = $("#text-color").val();
                 data.text_content = $("#text-content").val();
 
-                $(elem).attr("data-text-size", data.text_size);
-                $(elem).attr("data-text-color", data.text_color);
-                $(elem).attr("data-text-content", data.text_content);
+                elem.attr("data-text-size", data.text_size);
+                elem.attr("data-text-color", data.text_color);
+                elem.attr("data-text-content", data.text_content);
+
+                elem.find("div.grid-stack-item-body")
+                    .css({
+                        "font-size": Number(data.text_size),
+                        "color": data.text_color
+                    })
+                    .text(data.text_content);
+                break;
+            case "chart":
+                data.chart_data = $("#chart-data").val();
+
+                elem.attr("data-chart-data", data.chart_data);
+
+                drawChart(elem);
                 break;
             default:
                 data = null;
                 break;
         }
+
 
         closeModal();
     }
@@ -206,6 +245,31 @@ $(document).ready(function () {
         elem.remove();
 
         closeModal();
+    }
+
+
+
+    /*
+     * chart
+     */
+    function drawChart(elem) {
+        var id = elem.attr("id");
+        var data = elem.attr("data-chart-data");
+
+        console.log(test = data);
+
+        c3.generate({
+            bindto: id + 'div.grid-stack-item-body',
+            data: data,
+            padding: {
+                top: 10,
+                bottom: 0,
+                left: 30,
+                right: 10
+            }
+        });
+
+        console.log(data);
     }
 
 });
