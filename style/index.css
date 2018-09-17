@@ -68,6 +68,8 @@ input:focus, button:focus {
     font-family: 'Nanum Gothic Coding', monospace;
 
     box-shadow: 6px 6px 20px 0px darkgray;
+
+    overflow: hidden;
 }
 
 .grid-stack .grid-stack-item .grid-stack-item-header {
@@ -113,6 +115,9 @@ input:focus, button:focus {
     padding: 7.5px;
 
     background: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 

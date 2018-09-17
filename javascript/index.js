@@ -162,6 +162,9 @@ $(document).ready(function () {
                 $("#text-color").val(parentElem.attr("data-text-color"));
                 $("#text-content").val(parentElem.attr("data-text-content"));
                 break;
+            case "image":
+                $("#image-url").val(parentElem.attr("data-image-url"));
+                break;
             case "chart":
                 $("#chart-data").val(parentElem.attr("data-chart-data"));
                 break;
@@ -214,9 +217,21 @@ $(document).ready(function () {
                 elem.find("div.grid-stack-item-body")
                     .css({
                         "font-size": Number(data.text_size),
-                        "color": data.text_color
+                        "color": data.text_color,
+                        "white-space": "pre"
                     })
                     .text(data.text_content);
+                break;
+            case "image":
+                data.image_url = $("#image-url").val();
+
+                elem.attr("data-image-url", data.image_url);
+
+                elem.find("div.grid-stack-item-body")
+                    .css({
+                        "background-image": "url('" + data.image_url + "')"
+                    })                
+
                 break;
             case "chart":
                 data.chart_data = $("#chart-data").val();
