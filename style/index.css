@@ -6,8 +6,10 @@
 body {
     margin: 0;
     padding: 0;
+   
+    font-family: 'Nanum Gothic Coding', monospace;
 
-    background-image: url(https://thewallpaper.co/wp-content/uploads/2016/10/hd-wallpapers-desktop-im…ool_.download-windows-wallpapers-pictures-apple-colourful-4k-2880x1800.jpg);
+    background-image: url("https://thewallpaper.co/wp-content/uploads/2016/10/hd-wallpapers-desktop-images-amazing.cool_.download-windows-wallpapers-pictures-apple-colourful-4k-2880x1800.jpg");
 }
 
 input:focus, button:focus {
@@ -49,8 +51,6 @@ input:focus, button:focus {
     border: none;
 
     cursor: pointer;
-
-    font-family: 'Nanum Gothic Coding', monospace;
 }
 
 .grid-stack {
@@ -65,8 +65,6 @@ input:focus, button:focus {
  * 
  */
  .grid-stack .grid-stack-item .grid-stack-item-content {
-    font-family: 'Nanum Gothic Coding', monospace;
-
     box-shadow: 6px 6px 20px 0px darkgray;
 
     overflow: hidden;
@@ -138,8 +136,6 @@ input:focus, button:focus {
     background: none;
 
     box-shadow: none;
-
-    font-family: 'Nanum Gothic Coding', monospace;
 }
 
 .modal .modal-content {

@@ -76,10 +76,10 @@ function save() {
     }
 }
 
-function sleep(ms){
+function sleep(ms) {
     ts1 = new Date().getTime() + ms;
-    do ts2 = new Date().getTime(); while (ts2<ts1);
-  }
+    do ts2 = new Date().getTime(); while (ts2 < ts1);
+}
 
 
 /*
@@ -182,11 +182,13 @@ function createData() {
     $(grid_content).append($(grid_header))
     $(grid_content).append($(grid_body))
     $(grid_item).append($(grid_content))
-    $('.grid-stack').append(grid_item)
+    $('.grid-stack').append(grid_item);
 
-    // MAX, MIN And ADD
+
     var grid = $('.grid-stack').data('gridstack');
     grid.addWidget($('#' + id), 0, 0, 4, 2, true);
+
+    // MAX, MIN And ADD
     grid.maxWidth($('#' + id), 6);
     grid.maxHeight($('#' + id), 6);
     grid.minWidth($('#' + id), 2);
