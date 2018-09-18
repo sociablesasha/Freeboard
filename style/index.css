@@ -89,17 +89,23 @@ input:focus, button:focus {
 
 .grid-stack .grid-stack-item .grid-stack-item-header div {
     display: inline-block;
+    vertical-align: middle;
 
-    width: 90%;
+    width: calc(100% - 15px);
+
+    overflow: hidden;
 
     text-align: left;
+    text-overflow: ellipsis;
+
 }
 
 .grid-stack .grid-stack-item .grid-stack-item-header i {
     display: inline-block;
 
-    width: 10%;
-
+    width: 15px;
+    height: 15px;
+    
     text-align: right;
 }
 

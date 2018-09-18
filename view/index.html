@@ -40,7 +40,7 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Setting</h4>
-                    <button type="button" class="close" id="closeButton">&times;</button>
+                    <button type="button" class="close" onclick="closeModal()">&times;</button>
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
@@ -108,7 +108,16 @@
                                 <label for="type" class="col-sm-2 col-form-label">DATA</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" type="textarea" id="chart-data" style="height: 360px"
-                                        placeholder="Enter the C3 JSON."></textarea>
+                                        placeholder="Enter the Data JSON."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="data-form" id="tableForm">
+                            <div class="form-group row">
+                                <label for="type" class="col-sm-2 col-form-label">DATA</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" type="textarea" id="table-data" style="height: 360px"
+                                        placeholder="Enter the Data JSON."></textarea>
                                 </div>
                             </div>
                         </div>
