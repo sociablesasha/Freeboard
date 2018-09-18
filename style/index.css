@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
 
-    background: white;
+    background-image: url(https://thewallpaper.co/wp-content/uploads/2016/10/hd-wallpapers-desktop-im…ool_.download-windows-wallpapers-pictures-apple-colourful-4k-2880x1800.jpg);
 }
 
 input:focus, button:focus {
@@ -32,7 +32,7 @@ input:focus, button:focus {
     font-size: 30px;
     line-height: 30px;
 
-    background-color: black;
+    background-color: whitesmoke;
 }
 
 .grid-header .grid-header-button {
@@ -40,7 +40,7 @@ input:focus, button:focus {
 
     margin: 0px 20px 0px 20px;
 
-    color: white;
+    color: dimgray;
     font-size: 1rem;
 
     background: none;
@@ -75,10 +75,10 @@ input:focus, button:focus {
 .grid-stack .grid-stack-item .grid-stack-item-header {
     padding: 7.5px;
 
-    color: white;
+    color: dimgray;
     font-size: 15px;
 
-    background: black;
+    background: whitesmoke;
 }
 
 .grid-stack .grid-stack-item .grid-stack-item-header::after {
@@ -120,7 +120,7 @@ input:focus, button:focus {
 
     padding: 7.5px;
 
-    background: white;
+    background: whitesmoke;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;

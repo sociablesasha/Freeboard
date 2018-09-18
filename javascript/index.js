@@ -15,10 +15,23 @@ $('.grid-stack').gridstack(options);
 /*
  * Event Listen
  */
-$("#saveButton").on("click", function () {
-    $(".grid-stack-items").each(function () {
-        console.log(this);
+$("#saveButton").on("click", save);
+$("#loadButton").on("click", load);
 
+$('#addDataButton').on("click", createData);
+$("#saveDataButton").on("click", saveData);
+$("#deleteDataButton").on("click", deleteData);
+
+$("#type").on("change", function () { showForm(this.value); });
+
+
+
+/*
+ * save
+ */
+function save() {
+    var object = new Array;
+    $(".grid-stack-items").each(function () {
         var data = new Object;
         data.gs_x = $(this).attr("data-gs-x");
         data.gs_y = $(this).attr("data-gs-y");
@@ -47,18 +60,79 @@ $("#saveButton").on("click", function () {
                 break;
         }
 
-        console.log(data);
+        object.push(data);
     });
-});
-$("#loadButton").on("click", function () {
-    alert('준비!!')
-});
 
-$('#addDataButton').on("click", createData);
-$("#saveDataButton").on("click", saveData);
-$("#deleteDataButton").on("click", deleteData);
+    var file = document.createElement('a');
+    file.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(object)));
+    file.setAttribute('download', "Freeboard Data");
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        file.dispatchEvent(event);
+    }
+    else {
+        file.click();
+    }
+}
 
-$("#type").on("change", function () { showForm(this.value); });
+function sleep(ms){
+    ts1 = new Date().getTime() + ms;
+    do ts2 = new Date().getTime(); while (ts2<ts1);
+  }
+
+
+/*
+ * Create Object
+ */
+function load() {
+    $("#json").on("change", function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            var object = JSON.parse(reader.result);
+            let index = 0;
+            object.forEach(function (data) {
+                createData();
+                var elem = $("#item" + index);
+                elem.attr("data-gs-x", data.gs_x);
+                elem.attr("data-gs-y", data.gs_y);
+                elem.attr("data-gs-width", data.gs_width);
+                elem.attr("data-gs-height", data.gs_height);
+                elem.attr("data-gs-max-width", data.gs_max_width);
+                elem.attr("data-gs-min-width", data.gs_min_width);
+                elem.attr("data-gs-max-height", data.gs_max_height);
+                elem.attr("data-gs-min-height", data.gs_min_height);
+                elem.attr("data-gs-type", data.gs_type);
+                elem.attr("data-gs-title", data.gs_title);
+
+                switch (data.gs_type) {
+                    case "text":
+                        elem.attr("data-text-size", data.text_size);
+                        elem.attr("data-text-color", data.text_color);
+                        elem.attr("data-text-content", data.text_content);
+                        break;
+                    case "image":
+                        elem.attr("data-image-url", data.image_url);
+                        break;
+                    case "chart":
+                        elem.attr("data-chart-data", data.chart_data);
+                        break;
+                    default:
+                        break;
+                }
+
+                console.log(test = elem);
+
+
+                showData(elem);
+                index++;
+            });
+        }
+        reader.readAsText(file);
+    });
+    $("#json").click();
+}
 
 
 
