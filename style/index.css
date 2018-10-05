@@ -34,7 +34,7 @@ input:focus, button:focus {
     font-size: 30px;
     line-height: 30px;
 
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .grid-header .grid-header-button {
@@ -42,7 +42,7 @@ input:focus, button:focus {
 
     margin: 0px 20px 0px 20px;
 
-    color: dimgray;
+    color: black;
     font-size: 1rem;
 
     background: none;
@@ -73,10 +73,10 @@ input:focus, button:focus {
 .grid-stack .grid-stack-item .grid-stack-item-header {
     padding: 7.5px;
 
-    color: dimgray;
+    color: black;
     font-size: 15px;
 
-    background: whitesmoke;
+    background: white;
 }
 
 .grid-stack .grid-stack-item .grid-stack-item-header::after {
@@ -118,7 +118,7 @@ input:focus, button:focus {
 
     padding: 7.5px;
 
-    background: whitesmoke;
+    background: white;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;

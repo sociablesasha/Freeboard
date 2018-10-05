@@ -6,7 +6,8 @@ var options = {
     verticalMargin: 20,
     resizable: {
         handles: 'e, se, s, sw, w'
-    }
+    },
+    float: true
 };
 $('.grid-stack').gridstack(options);
 
@@ -22,7 +23,9 @@ $('#addDataButton').on("click", createData);
 $("#saveDataButton").on("click", saveData);
 $("#deleteDataButton").on("click", deleteData);
 
-$("#type").on("change", function () { showForm(this.value); });
+$("#type").on("change", function () {
+    showForm(this.value);
+});
 
 
 
@@ -70,16 +73,11 @@ function save() {
         var event = document.createEvent('MouseEvents');
         event.initEvent('click', true, true);
         file.dispatchEvent(event);
-    }
-    else {
+    } else {
         file.click();
     }
 }
 
-function sleep(ms) {
-    ts1 = new Date().getTime() + ms;
-    do ts2 = new Date().getTime(); while (ts2 < ts1);
-}
 
 
 /*
@@ -93,40 +91,7 @@ function load() {
             var object = JSON.parse(reader.result);
             let index = 0;
             object.forEach(function (data) {
-                createData();
-                var elem = $("#item" + index);
-                elem.attr("data-gs-x", data.gs_x);
-                elem.attr("data-gs-y", data.gs_y);
-                elem.attr("data-gs-width", data.gs_width);
-                elem.attr("data-gs-height", data.gs_height);
-                elem.attr("data-gs-max-width", data.gs_max_width);
-                elem.attr("data-gs-min-width", data.gs_min_width);
-                elem.attr("data-gs-max-height", data.gs_max_height);
-                elem.attr("data-gs-min-height", data.gs_min_height);
-                elem.attr("data-gs-type", data.gs_type);
-                elem.attr("data-gs-title", data.gs_title);
-
-                switch (data.gs_type) {
-                    case "text":
-                        elem.attr("data-text-size", data.text_size);
-                        elem.attr("data-text-color", data.text_color);
-                        elem.attr("data-text-content", data.text_content);
-                        break;
-                    case "image":
-                        elem.attr("data-image-url", data.image_url);
-                        break;
-                    case "chart":
-                        elem.attr("data-chart-data", data.chart_data);
-                        break;
-                    default:
-                        break;
-                }
-
-                console.log(test = elem);
-
-
-                showData(elem);
-                index++;
+                createData(null, data);
             });
         }
         reader.readAsText(file);
@@ -140,7 +105,8 @@ function load() {
  * Create Object
  */
 let index = 0;
-function createData() {
+
+function createData(click = null, data = null) {
     var id = "item" + index;
 
     // PARENT DIV    
@@ -186,14 +152,43 @@ function createData() {
 
 
     var grid = $('.grid-stack').data('gridstack');
-    grid.addWidget($('#' + id), 0, 0, 4, 2, true);
+    grid.addWidget($("#" + id), 0, 0, 4, 2, true);
 
     // MAX, MIN And ADD
-    grid.maxWidth($('#' + id), 6);
-    grid.maxHeight($('#' + id), 6);
-    grid.minWidth($('#' + id), 2);
-    grid.minHeight($('#' + id), 2);
+    grid.maxWidth($("#" + id), 6);
+    grid.maxHeight($("#" + id), 6);
+    grid.minWidth($("#" + id), 2);
+    grid.minHeight($("#" + id), 2);
 
+    if (data != null) {
+        grid.move($("#" + id), Number(data.gs_x), Number(data.gs_y));
+        grid.resize($("#" + id), Number(data.gs_width), Number(data.gs_height));
+
+        grid.maxWidth($("#" + id), Number(data.gs_max_width));
+        grid.minWidth($("#" + id), Number(data.gs_min_width));
+        grid.maxHeight($("#" + id), Number(data.gs_max_height));
+        grid.minHeight($("#" + id), Number(data.gs_min_height));
+
+        $("#" + id).attr("data-gs-title", data.gs_title);
+        $("#" + id).attr("data-gs-type", data.gs_type);
+
+        switch (data.gs_type) {
+            case "text":
+                $("#" + id).attr("data-text-size", data.text_size);
+                $("#" + id).attr("data-text-color", data.text_color);
+                $("#" + id).attr("data-text-content", data.text_content);
+                break;
+            case "image":
+                $("#" + id).attr("data-image-url", data.image_url);
+                break;
+            case "chart":
+                $("#" + id).attr("data-chart-data", data.chart_data);
+                break;
+            default:
+                break;
+        }
+        showData($("#" + id));
+    }
     index++;
 }
 
@@ -370,7 +365,12 @@ function showData(elem) {
 
             c3.generate({
                 bindto: "#" + id + " " + "div.grid-stack-item-body",
-                data: { json: object.data, keys: { value: object.keys } },
+                data: {
+                    json: object.data,
+                    keys: {
+                        value: object.keys
+                    }
+                },
                 padding: {
                     top: 10,
                     bottom: 10,
