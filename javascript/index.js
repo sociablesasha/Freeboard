@@ -10,6 +10,7 @@ var options = {
     float: true
 };
 $('.grid-stack').gridstack(options);
+var grid = $('.grid-stack').data('gridstack');
 
 
 
@@ -32,7 +33,7 @@ $("#type").on("change", function () {
 /*
  * save
  */
-function save() {
+function save(event) {
     var object = new Array;
     $(".grid-stack-items").each(function () {
         var data = new Object;
@@ -40,10 +41,6 @@ function save() {
         data.gs_y = $(this).attr("data-gs-y");
         data.gs_width = $(this).attr("data-gs-width");
         data.gs_height = $(this).attr("data-gs-height");
-        data.gs_max_width = $(this).attr("data-gs-max-width");
-        data.gs_min_width = $(this).attr("data-gs-min-width");
-        data.gs_max_height = $(this).attr("data-gs-max-height");
-        data.gs_min_height = $(this).attr("data-gs-min-height");
         data.gs_type = $(this).attr("data-gs-type");
         data.gs_title = $(this).attr("data-gs-title");
 
@@ -89,10 +86,13 @@ function load() {
         var reader = new FileReader();
         reader.onload = function () {
             var object = JSON.parse(reader.result);
-            let index = 0;
+            grid.removeAll();
+            grid.batchUpdate();
             object.forEach(function (data) {
                 createData(null, data);
             });
+            grid.commit();
+
         }
         reader.readAsText(file);
     });
@@ -104,9 +104,10 @@ function load() {
 /*
  * Create Object
  */
-let index = 0;
+var index = 0;
 
-function createData(click = null, data = null) {
+function createData(event = null, data = null) {
+    console.log(data);
     var id = "item" + index;
 
     // PARENT DIV    
@@ -150,24 +151,19 @@ function createData(click = null, data = null) {
     $(grid_item).append($(grid_content))
     $('.grid-stack').append(grid_item);
 
-
-    var grid = $('.grid-stack').data('gridstack');
-    grid.addWidget($("#" + id), 0, 0, 4, 2, true);
-
-    // MAX, MIN And ADD
-    grid.maxWidth($("#" + id), 6);
-    grid.maxHeight($("#" + id), 6);
-    grid.minWidth($("#" + id), 2);
-    grid.minHeight($("#" + id), 2);
+    var object = null;
+    object = {
+        x: 0,
+        y: 0,
+        width: 4,
+        height: 2
+    }
 
     if (data != null) {
-        grid.move($("#" + id), Number(data.gs_x), Number(data.gs_y));
-        grid.resize($("#" + id), Number(data.gs_width), Number(data.gs_height));
-
-        grid.maxWidth($("#" + id), Number(data.gs_max_width));
-        grid.minWidth($("#" + id), Number(data.gs_min_width));
-        grid.maxHeight($("#" + id), Number(data.gs_max_height));
-        grid.minHeight($("#" + id), Number(data.gs_min_height));
+        object.x = data.gs_x;
+        object.y = data.gs_y;
+        object.width = data.gs_width;
+        object.height = data.gs_height;
 
         $("#" + id).attr("data-gs-title", data.gs_title);
         $("#" + id).attr("data-gs-type", data.gs_type);
@@ -187,8 +183,21 @@ function createData(click = null, data = null) {
             default:
                 break;
         }
+    }
+
+    if (data == null) {
+        grid.addWidget($("#" + id), 0, 0, 4, 2, true, 2, 6, 2, 6, id);
+    } else {
+        grid.addWidget($("#" + id),
+            object.x,
+            object.y,
+            object.width,
+            object.height,
+            false, 2, 6, 2, 6,
+            id);
         showData($("#" + id));
     }
+
     index++;
 }
 
@@ -197,7 +206,7 @@ function createData(click = null, data = null) {
 /*
  * openModal
  */
-function openModal() {
+function openModal(event) {
     // PARENT ELEMENT
     var parentElem = this.parentElement.parentElement.parentElement;
 
@@ -230,7 +239,7 @@ function openModal() {
 /*
  * closeModal
  */
-function closeModal() {
+function closeModal(event) {
     // DEFAULT
     $("#title").val("");
     $("#width").val("");
@@ -292,7 +301,7 @@ function showForm(data, id = null) {
 /*
  * saveData
  */
-function saveData() {
+function saveData(event) {
     var elem = $("#" + $('#modal').attr("data-gs-id"));
 
     elem.attr("data-gs-title", $("#title").val());
@@ -326,10 +335,10 @@ function saveData() {
 /*
  * deleteData
  */
-function deleteData() {
+function deleteData(event) {
     var elem = $("#" + $('#modal').attr("data-gs-id"));
 
-    elem.remove();
+    grid.removeWidget(elem);
 
     closeModal();
 }
